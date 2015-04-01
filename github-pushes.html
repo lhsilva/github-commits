@@ -1,0 +1,132 @@
+<link rel="import" href="../polymer/polymer.html">
+
+<!--
+Polymer element to show the latest pushes done to github.
+
+##### Example
+
+    <github-pushes></github-pushes>
+
+@element github-pushes
+@blurb Polymer element to show the latest pushes done to github.
+@status alpha
+@homepage
+-->
+<polymer-element name="github-pushes" attributes="username">
+
+    <template>
+
+        <link rel="stylesheet" href="github-pushes.css">
+        <content></content>
+
+    </template>
+
+    <script>
+
+        Polymer({
+            /**
+             * "username" is the github username of the user we want to use.
+             *
+             * @property username
+             * @type string
+             * @default ""
+             */
+            username: "",
+
+            /**
+             * "tableHeaders" is the object that holds the table headers configurations.
+             * 
+             * @property tableHeaders
+             * @type object
+             * @default {
+                    pushDateTime: "Push Date and Time",
+                    repository: "Repository",
+                    commitMessage: "Commit Message"
+                }
+             */
+            tableHeaders: {
+                pushDateTime: "Push Date and Time",
+                repository: "Repository",
+                commitMessage: "Commit Message"
+            },
+
+            nrOfPushes: 10,
+
+            isDebugEnabled: false,
+            
+            ready: function () {
+                this.retrieveGithubLatestEvents(this.buildGithubPushesTable, this);
+            },
+
+            //latest 90 days github public repos events
+            retrieveGithubLatestEvents: function (callback, scope) {
+                var url = "https://api.github.com/users/" + this.username + "/events/public",
+                        events = [],
+                        httpRequest;
+
+                try {
+                    httpRequest = new XMLHttpRequest();
+                    httpRequest.onreadystatechange = function () {
+                        if (httpRequest.readyState === 4 && httpRequest.status === 200) {
+                            events = JSON.parse(httpRequest.responseText);
+                            callback.call(scope, events);
+                        }
+                    };
+
+                    httpRequest.open("GET", url, true);
+                    httpRequest.send(null);
+                } catch (ex) {
+                    if (this.isDebugEnabled){
+                        console.log("Error while creating a request to " + url);
+                    }
+                }
+            },
+            
+            buildGithubPushesTable: function (events) {
+                var htmlTable = '<table><thead><tr><th>#</th><th>' + this.tableHeaders.pushDateTime + '</th><th>' + this.tableHeaders.repository + '</th><th>' + this.tableHeaders.commitMessage + '</th></tr></thead><tbody>',
+                    counter = 1;
+
+                for (var i = 0, n = events.length; i < n && counter <= this.nrOfPushes; i++) {
+                    var event = events[i];
+
+                    // Other events include Creation, Watch and so on.
+                    if (event && event.type === "PushEvent" && event.actor.login === this.username) {
+                        var tableEntry = this.createTableRow(event, counter);
+
+                        if (tableEntry) {
+                            htmlTable += tableEntry;
+                            counter++;
+                        }
+                    }
+                }
+
+                htmlTable += '</tbody></table>';
+                
+                //EL MARTELON -> alterar
+                document.body.innerHTML = htmlTable;
+            },
+            
+            createTableRow: function (event, counter) {
+                var creationDate = new Date(event.created_at),
+                    eventCreationDate = creationDate.toLocaleDateString(),
+                    eventCreationTime = creationDate.toLocaleTimeString(),
+                    eventRepo = event.repo,
+                    eventRepoName = eventRepo.name,
+                    eventCommit = event.payload.commits[0],
+                    eventCommitSha = eventCommit.sha,
+                    eventCommitMsg = eventCommit.message,
+                    htmlTableRow = '<tr>';
+
+                htmlTableRow += '<td>' + counter + '</td>';
+                htmlTableRow += '<td>' + eventCreationDate + ' - ' + eventCreationTime + '</td>';
+                htmlTableRow += '<td><a href="https://github.com/' + eventRepoName + '" target="_blank">' + eventRepoName + '</a></td>';
+                htmlTableRow += '<td><a href="https://github.com/' + eventRepoName + '/commit/' + eventCommitSha + '" target="_blank">' + eventCommitMsg + '</a></td>';
+                htmlTableRow += '</tr>';
+
+                return htmlTableRow;
+            }
+        });
+
+    </script>
+
+</polymer-element>

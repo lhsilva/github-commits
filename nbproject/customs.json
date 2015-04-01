@@ -1,0 +1,13 @@
+{
+    "elements": {
+        "template": {},
+        "polymer-element": {
+            "attributes": {
+                "name": {},
+                "attributes": {}
+            }
+        },
+        "content": {}
+    },
+    "attributes": {}
+}
