@@ -14,7 +14,7 @@
   ],
   "main": "github-pushes.html",
   "license": "MIT",
-  "homepage": "https://github.com/lhsilva/github-pushes/",
+  "homepage": "https://github.com/lhsilva/github-pushes",
   "ignore": [
     "/.*",
     "/tests/"
