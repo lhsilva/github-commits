@@ -119,12 +119,12 @@ Polymer element to show the latest pushes done to github.
                     repository = rawEvent.repo,
                     commit = rawEvent.payload.commits[0],
                     event = {
-                        id = counter,
-                        creationDate = creationDateComplete.toLocaleDateString(),
-                        creationTime = creationDateComplete.toLocaleTimeString(),
-                        repositoryName = repository.name,
-                        commitSha = commit.sha,
-                        commitMessage = commit.message
+                        id: counter,
+                        creationDate: creationDateComplete.toLocaleDateString(),
+                        creationTime: creationDateComplete.toLocaleTimeString(),
+                        repositoryName: repository.name,
+                        commitSha: commit.sha,
+                        commitMessage: commit.message
                     };
 
                 this.events.push(event);
