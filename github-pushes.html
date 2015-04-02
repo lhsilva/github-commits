@@ -54,8 +54,7 @@ Polymer element to show the latest pushes done to github.
 
             isDebugEnabled: false,
 
-            ready: function () {
-                     
+            ready: function () {                     
                 this.tableHeaders = {
                     pushDateTime: "Push Date and Time",
                     repository: "Repository",
@@ -74,10 +73,10 @@ Polymer element to show the latest pushes done to github.
                 try {
                     httpRequest = new XMLHttpRequest();
                     httpRequest.onreadystatechange = function () {
-                    if (httpRequest.readyState === 4 && httpRequest.status === 200) {
-                    var events = JSON.parse(httpRequest.responseText);
+                        if (httpRequest.readyState === 4 && httpRequest.status === 200) {
+                            var events = JSON.parse(httpRequest.responseText);
                             callback.call(scope, events);
-                    }
+                        }
                     };
                     httpRequest.open("GET", url, true);
                     httpRequest.send(null);
@@ -96,10 +95,8 @@ Polymer element to show the latest pushes done to github.
 
                     // Other events include Creation, Watch and so on.
                     if (event && event.type === "PushEvent" && event.actor.login === this.username) {
-                        var tableEntry = this.createTableRow(event, counter);
-                            if (tableEntry) {
-                                counter++;
-                            }
+                        this.createTableRow(event, counter);
+                        counter++;                           
                     }
                 }
             },
