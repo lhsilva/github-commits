@@ -22,17 +22,17 @@ Polymer element to show the latest pushes done to github.
             <thead>
                 <tr>
                     <th>#</th>
-                    <th title="{{ tableHeaders.pushDateTime }}"></th>
-                    <th title="{{ tableHeaders.repository }}"></th>
-                    <th title="{{ tableHeaders.commitMessage }}"></th>
+                    <th>{{tableHeaders.pushDateTime}}</th>
+                    <th>{{tableHeaders.repository}}</th>
+                    <th>{{tableHeaders.commitMessage}}</th>
                 </tr>
             </thead>
             <tbody>
-                <tr template repeat="{{ event in events }}">
-                    <td>{{ event.id }}</td>
-                    <td>{{ event.creationDate }} {{ event.creationTime }}</td>
-                    <td><a href="'https://github.com/' + {{ event.repositoryName }} + '"' target="_blank">{{ event.repositoryName }}</a></td>
-                    <td><a href="'https://github.com/' + {{ event.repositoryName }} + '/commit/' + {{ event.commitSha }}'"' target="_blank">{{ event.commitMessage }}</a></td>
+                <tr template repeat="{{event in events}}">
+                    <td>{{event.id}}</td>
+                    <td>{{event.creationDate}} - {{event.creationTime }}</td>
+                    <td><a href="https://github.com/{{event.repositoryName}}" target="_blank">{{event.repositoryName}}</a></td>
+                    <td><a href="https://github.com/{{event.repositoryName}}/commit/{{event.commitSha}}" target="_blank">{{ event.commitMessage }}</a></td>
                 </tr>
             </tbody>
         </table>
@@ -50,28 +50,18 @@ Polymer element to show the latest pushes done to github.
              */
             username: "",
 
-            /**
-             * "tableHeaders" is the object that holds the table headers configurations.
-             * 
-             * @property tableHeaders
-             * @type object
-             * @default {
-             *   pushDateTime: "Push Date and Time",
-             *   repository: "Repository",
-             *   commitMessage: "Commit Message"
-             * }
-             */        
-            tableHeaders: {
-                pushDateTime: "Push Date and Time",
-                repository: "Repository",
-                commitMessage: "Commit Message"
-            },
-
             nrOfPushes: 10,
 
             isDebugEnabled: false,
 
             ready: function () {
+                     
+                this.tableHeaders = {
+                    pushDateTime: "Push Date and Time",
+                    repository: "Repository",
+                    commitMessage: "Commit Message"
+                };
+                        
                 this.events = [];
                 this.retrieveGithubLatestEvents(this.buildGithubPushesTable, this);
             },
