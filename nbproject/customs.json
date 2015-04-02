@@ -9,5 +9,12 @@
         },
         "content": {}
     },
-    "attributes": {}
+    "attributes": {
+        "unresolved": {
+            "context": "table"
+        },
+        "repeat": {
+            "context": "tr"
+        }
+    }
 }
