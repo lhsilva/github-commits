@@ -1,24 +1,21 @@
 <link rel="import" href="../polymer/polymer.html">
 
 <!--
-Polymer element to show the latest pushes done to github.
+Polymer element to show the latest pushes done by an user to github.
 
 ##### Example
 
     <github-pushes username="lhsilva"></github-pushes>
 
 @element github-pushes
-@blurb Polymer element to show the latest pushes done to github.
-@status alpha
+@blurb Polymer element to show the latest pushes done by an user to github.
 @homepage https://github.com/lhsilva/github-pushes
 -->
-<polymer-element name="github-pushes" attributes="username">
-
+<polymer-element name="github-pushes" attributes="username pushes tableHeaders">
     <template>
-
         <link rel="stylesheet" href="github-pushes.css">
-
-        <table id="github-pushes-table" unresolved="">
+        
+        <table id="github-pushes-table">
             <thead>
                 <tr>
                     <th>#</th>
@@ -28,16 +25,17 @@ Polymer element to show the latest pushes done to github.
                 </tr>
             </thead>
             <tbody>
-                <tr template repeat="{{event in events}}">
-                    <td>{{event.id}}</td>
-                    <td>{{event.creationDate}} - {{event.creationTime }}</td>
-                    <td><a href="https://github.com/{{event.repositoryName}}" target="_blank">{{event.repositoryName}}</a></td>
-                    <td><a href="https://github.com/{{event.repositoryName}}/commit/{{event.commitSha}}" target="_blank">{{ event.commitMessage }}</a></td>
-                </tr>
+                <template repeat="{{pushEvent in pushEvents}}" 
+                    <tr >
+                        <td>{{pushEvent.id}}</td>
+                        <td>{{pushEvent.creationDate}} - {{pushEvent.creationTime }}</td>
+                        <td><a href="https://github.com/{{pushEvent.repositoryName}}" target="_blank">{{pushEvent.repositoryName}}</a></td>
+                        <td><a href="https://github.com/{{pushEvent.repositoryName}}/commit/{{pushEvent.commitSha}}" target="_blank">{{pushEvent.commitMessage}}</a></td>
+                    </tr>
+                </template>
             </tbody>
         </table>
     </template>
 
     <script src="github-pushes.js"></script>
-
 </polymer-element>
