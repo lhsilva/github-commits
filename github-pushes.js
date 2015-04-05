@@ -69,8 +69,8 @@ Polymer('github-pushes', {
      */
     onGetUserPublicEventsResponse: function (response) {
         'use strict';
-
-        var events = JSON.parse(response.responseText);
+        
+        var events = JSON.parse(response);
         if (events) {
             this.pushEvents = this.extractPushEvents(events);
         }

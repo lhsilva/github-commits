@@ -25,8 +25,8 @@ Polymer element to show the latest pushes done by an user to github.
                 </tr>
             </thead>
             <tbody>
-                <template repeat="{{pushEvent in pushEvents}}" 
-                    <tr >
+                <template repeat="{{pushEvent in pushEvents}}">
+                    <tr>
                         <td>{{pushEvent.id}}</td>
                         <td>{{pushEvent.creationDate}} - {{pushEvent.creationTime }}</td>
                         <td><a href="https://github.com/{{pushEvent.repositoryName}}" target="_blank">{{pushEvent.repositoryName}}</a></td>

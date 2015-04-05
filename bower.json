@@ -4,20 +4,21 @@
   "authors": [
     "Luís Silva <lhsilva89@gmail.com>"
   ],
-  "description": "Polymer element to show the latest pushes done to github.",
+  "description": "Polymer element to show the latest pushes done by an user to github.",
   "keywords": [
     "web-component",
     "web-components",
     "polymer",
     "github",
-    "github pushes"
+    "github pushes",
+    "lhsilva"
   ],
   "main": "github-pushes.html",
   "license": "MIT",
   "homepage": "https://github.com/lhsilva/github-pushes",
   "ignore": [
-    "/.*",
-    "/tests/"
+    "**/.*",
+    "test"
   ],
   "dependencies": {
     "polymer": "Polymer/polymer#^0.5.4"
