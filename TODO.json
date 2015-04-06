@@ -1,0 +1,8 @@
+{
+    "Polymer": "Migrate from 0.5 to 0.8 - https://www.polymer-project.org/0.8/docs/migration.html",
+    "CSS": "Add the previous media queries to CSS",
+    "CSS": "Add possibility to change css from API",
+    "Testing": "Add Unit Tests",
+    "Bower": "Release the component to bower",
+    "NPM": "Release the component to NPM"
+}
