@@ -10,13 +10,13 @@ Polymer('github-pushes', {
     username: "",
 
     /**
-     * "pushEventsNr" is the number of Push Events we want to retrieve.
+     * "maxPushes" is the maximum number of Push Events we want to retrieve.
      *
      * @property pushes
      * @type number
      * @default 10
      */
-    pushEventsNr: 10,
+    maxPushes: 10,
 
 
     /**
@@ -89,7 +89,7 @@ Polymer('github-pushes', {
             pushEvents = [],
             event, pushEvent;
 
-        for (var i = 0, n = events.length; i < n && counter <= this.pushEventsNr; i++) {
+        for (var i = 0, n = events.length; i < n && counter <= this.maxPushes; i++) {
             event = events[i];
 
             if (event && event.type === "PushEvent") {
