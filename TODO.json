@@ -4,5 +4,6 @@
     "Testing": "Add Unit Tests",
     "Bower": "Release the component to bower",
     "NPM": "Release the component to NPM",
-    "Technical Debt": "Review counter logic."
+    "Technical Debt": "Review counter logic.",
+    "Technical Debt": "(Re)read github used API documentation, and take in consideration the response headers information. (Delay time before a new request)"
 }

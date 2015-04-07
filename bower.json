@@ -8,8 +8,10 @@
   "keywords": [
     "web-component",
     "web-components",
+    "webcomponents",
     "polymer",
     "github",
+    "commits",
     "github commits",
     "lhsilva"
   ],
@@ -17,8 +19,8 @@
   "license": "MIT",
   "homepage": "https://github.com/lhsilva/github-commits",
   "ignore": [
-    "**/.*",
-    "test"
+    "test",
+    "TODO.json"
   ],
   "dependencies": {
     "polymer": "Polymer/polymer#^0.5.4"
