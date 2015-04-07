@@ -3,8 +3,6 @@
     "TODO list Rule 2": "TODOs are ordered by importance and the lower ones depende on the resolution of the upper ones.",
     "TODO list Rule 3": "After resolution delete it.",
     
-    "Bug-fix": "1 - A push may have multiple commits. Should return commits instead of pushes",
-    
     "Naming": "Because of Bug-fix (1), maybe the name of the component should be changed to github-commits",
     
     "Polymer": "Migrate from 0.5 to 0.8 - https://www.polymer-project.org/0.8/docs/migration.html",
@@ -15,5 +13,7 @@
     "Testing": "Add Unit Tests",
     
     "Bower": "Release the component to bower",
-    "NPM": "Release the component to NPM"
+    "NPM": "Release the component to NPM",
+    
+    "Technical Debt": "Review counter logic."
 }
