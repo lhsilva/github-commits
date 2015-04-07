@@ -16,26 +16,28 @@ Polymer element to show the latest commits done by an user to github.
     <template>
         <link rel="stylesheet" href="github-commits.css">
         
-        <table id="github-commits-table">
-            <thead>
-                <tr>
-                    <th>#</th>
-                    <th>{{tableHeaders.pushDateTime}}</th>
-                    <th>{{tableHeaders.repository}}</th>
-                    <th>{{tableHeaders.commitMessage}}</th>
-                </tr>
-            </thead>
-            <tbody>
-                <template repeat="{{commit in commits}}">
+        <div id="github-commits-wrapper">
+            <table id="github-commits-table">
+                <thead>
                     <tr>
-                        <td>{{commit.id}}</td>
-                        <td>{{commit.creationDate}} - {{commit.creationTime }}</td>
-                        <td><a href="https://github.com/{{commit.repositoryName}}" target="_blank">{{commit.repositoryName}}</a></td>
-                        <td><a href="https://github.com/{{commit.repositoryName}}/commit/{{commit.commitSha}}" target="_blank">{{commit.commitMessage}}</a></td>
+                        <th>#</th>
+                        <th>{{tableHeaders.pushDateTime}}</th>
+                        <th>{{tableHeaders.repository}}</th>
+                        <th>{{tableHeaders.commitMessage}}</th>
                     </tr>
-                </template>
-            </tbody>
-        </table>
+                </thead>
+                <tbody>
+                    <template repeat="{{commit in commits}}">
+                        <tr>
+                            <td>{{commit.id}}</td>
+                            <td>{{commit.creationDate}} - {{commit.creationTime }}</td>
+                            <td><a href="https://github.com/{{commit.repositoryName}}" target="_blank">{{commit.repositoryName}}</a></td>
+                            <td><a href="https://github.com/{{commit.repositoryName}}/commit/{{commit.commitSha}}" target="_blank">{{commit.commitMessage}}</a></td>
+                        </tr>
+                    </template>
+                </tbody>
+            </table>
+        </div>
     </template>
 
     <script src="github-commits.js"></script>
