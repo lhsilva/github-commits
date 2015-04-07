@@ -1,22 +1,22 @@
 <link rel="import" href="../polymer/polymer.html">
 
 <!--
-Polymer element to show the latest pushes done by an user to github.
+Polymer element to show the latest commits done by an user to github.
 
 ##### Example
 
-    <github-pushes username="lhsilva" maxPushes="10" tableHeaders='{"pushDateTime": "pushDateTime", "repository": "repository", "commitMessage": "commitMessage"}'></github-pushes>
+    <github-commits username="lhsilva" maxCommits="10" tableHeaders='{"pushDateTime": "pushDateTime", "repository": "repository", "commitMessage": "commitMessage"}'></github-commits>
 
-@element github-pushes
-@blurb Polymer element to show the latest pushes done by an user to github.
+@element github-commits
+@blurb Polymer element to show the latest commits done by an user to github.
 @status alpha
-@homepage https://github.com/lhsilva/github-pushes
+@homepage https://github.com/lhsilva/github-commits
 -->
-<polymer-element name="github-pushes" attributes="username maxPushes tableHeaders">
+<polymer-element name="github-commits" attributes="username maxCommits tableHeaders">
     <template>
-        <link rel="stylesheet" href="github-pushes.css">
+        <link rel="stylesheet" href="github-commits.css">
         
-        <table id="github-pushes-table">
+        <table id="github-commits-table">
             <thead>
                 <tr>
                     <th>#</th>
@@ -38,5 +38,5 @@ Polymer element to show the latest pushes done by an user to github.
         </table>
     </template>
 
-    <script src="github-pushes.js"></script>
+    <script src="github-commits.js"></script>
 </polymer-element>

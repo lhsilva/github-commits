@@ -1,21 +1,21 @@
 {
-  "name": "github-pushes",
+  "name": "github-commits",
   "version": "0.0.1",
   "authors": [
     "Luís Silva <lhsilva89@gmail.com>"
   ],
-  "description": "Polymer element to show the latest pushes done by an user to github.",
+  "description": "Polymer element to show the latest commits done by an user to github.",
   "keywords": [
     "web-component",
     "web-components",
     "polymer",
     "github",
-    "github pushes",
+    "github commits",
     "lhsilva"
   ],
-  "main": "github-pushes.html",
+  "main": "github-commits.html",
   "license": "MIT",
-  "homepage": "https://github.com/lhsilva/github-pushes",
+  "homepage": "https://github.com/lhsilva/github-commits",
   "ignore": [
     "**/.*",
     "test"

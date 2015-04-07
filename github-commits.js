@@ -1,5 +1,5 @@
 /*global Polymer, XMLHttpRequest*/
-Polymer('github-pushes', {
+Polymer('github-commits', {
     /**
      * "username" is the github username of the user we want to use.
      *
@@ -10,13 +10,13 @@ Polymer('github-pushes', {
     username: "",
 
     /**
-     * "maxPushes" is the maximum number of Push Events we want to retrieve.
+     * "maxCommits" is the maximum number of Commits we want to retrieve.
      *
-     * @property pushes
+     * @property commits
      * @type number
      * @default 10
      */
-    maxPushes: 10,
+    maxCommits: 10,
 
 
     /**
@@ -89,7 +89,7 @@ Polymer('github-pushes', {
             pushEvents = [],
             event, pushEvent;
 
-        for (var i = 0, n = events.length; i < n && counter <= this.maxPushes; i++) {
+        for (var i = 0, n = events.length; i < n && counter <= this.maxCommits; i++) {
             event = events[i];
 
             if (event && event.type === "PushEvent") {
