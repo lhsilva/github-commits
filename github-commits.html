@@ -26,12 +26,12 @@ Polymer element to show the latest commits done by an user to github.
                 </tr>
             </thead>
             <tbody>
-                <template repeat="{{pushEvent in pushEvents}}">
+                <template repeat="{{commit in commits}}">
                     <tr>
-                        <td>{{pushEvent.id}}</td>
-                        <td>{{pushEvent.creationDate}} - {{pushEvent.creationTime }}</td>
-                        <td><a href="https://github.com/{{pushEvent.repositoryName}}" target="_blank">{{pushEvent.repositoryName}}</a></td>
-                        <td><a href="https://github.com/{{pushEvent.repositoryName}}/commit/{{pushEvent.commitSha}}" target="_blank">{{pushEvent.commitMessage}}</a></td>
+                        <td>{{commit.id}}</td>
+                        <td>{{commit.creationDate}} - {{commit.creationTime }}</td>
+                        <td><a href="https://github.com/{{commit.repositoryName}}" target="_blank">{{commit.repositoryName}}</a></td>
+                        <td><a href="https://github.com/{{commit.repositoryName}}/commit/{{commit.commitSha}}" target="_blank">{{commit.commitMessage}}</a></td>
                     </tr>
                 </template>
             </tbody>

@@ -35,7 +35,7 @@ Polymer('github-commits', {
     ready: function () {
         'use strict';
 
-        this.pushEvents = [];
+        this.commits = [];
         this.getUserPublicEvents(this.onGetUserPublicEventsResponse, this);
     },
 
@@ -69,37 +69,38 @@ Polymer('github-commits', {
      */
     onGetUserPublicEventsResponse: function (response) {
         'use strict';
-        
+
         var events = JSON.parse(response);
         if (events) {
-            this.pushEvents = this.extractPushEvents(events);
+            this.commits = this.extractCommits(events);
         }
     },
 
     /**
-     * Extracts and instantiates an array of Push Events from the passed events array.
+     * Extracts and instantiates an array of Commits from the passed events array.
      * 
      * @param {Array} events
-     * @returns {Array} pushEvents
+     * @returns {Array} commits
      */
-    extractPushEvents: function (events) {
+    extractCommits: function (events) {
         'use strict';
 
         var counter = 1,
-            pushEvents = [],
-            event, pushEvent;
+            commits = [],
+            extractedCommits = [],
+            event;
 
         for (var i = 0, n = events.length; i < n && counter <= this.maxCommits; i++) {
             event = events[i];
 
             if (event && event.type === "PushEvent") {
-                pushEvent = this.createPushEvent(event, counter);
-                pushEvents.push(pushEvent);
-                counter++;
+                extractedCommits = this.extractCommitsFromPush(event, counter);
+                commits = commits.concat(extractedCommits);
+                counter += extractedCommits.length;
             }
         }
 
-        return pushEvents;
+        return commits;
     },
 
     /**
@@ -109,19 +110,25 @@ Polymer('github-commits', {
      * @param {number} counter
      * @returns {object} litePushEvent
      */
-    createPushEvent: function (pushEvent, counter) {
+    extractCommitsFromPush: function (pushEvent, counter) {
         var creationDateComplete = new Date(pushEvent.created_at),
             repository = pushEvent.repo,
-            commit = pushEvent.payload.commits[0],
-            litePushEvent = {
+            pushCommits = pushEvent.payload.commits,
+            commits = [];
+
+        for (var i = 0, n = pushCommits.length; i < n; i++) {
+            commits.push({
                 id: counter,
                 creationDate: creationDateComplete.toLocaleDateString(),
                 creationTime: creationDateComplete.toLocaleTimeString(),
                 repositoryName: repository.name,
-                commitSha: commit.sha,
-                commitMessage: commit.message
-            };
+                commitSha: pushCommits[i].sha,
+                commitMessage: pushCommits[i].message
+            });
 
-        return litePushEvent;
+            counter++;
+        }
+
+        return commits;
     }
 });
